@@ -6,4 +6,26 @@
   justify-content: space-between;
   padding: u.rem(24);
   border-block-end: 1px solid var(--light-grey);
+
+  h1 {
+    width: u.rem(113);
+    height: u.rem(32);
+  }
+
+  &__logo {
+    width: u.rem(113);
+    height: u.rem(32);
+  }
+
+  &__button {
+    font-family: "Libre Baskerville";
+    font-weight: 700;
+    font-size: u.rem(9);
+    line-height: u.rem(11);
+    letter-spacing: u.rem(1.92857);
+    color: var(--grey);
+    text-transform: uppercase;
+    background-color: transparent;
+    border: none;
+  }
 }
