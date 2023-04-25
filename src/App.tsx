@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import "./styles/styles.scss";
+import key from "weak-key";
+import { DataTypes } from "./DataTypes";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [data, setData] = useState<DataTypes>();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("../data.json");
+        const json = await response.json();
+        setData(json);
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+      <header className="header">
+        <img
+          className="header__logo"
+          src="/assets/shared/logo.svg"
+          alt="galleria logo"
+        />
+        <button className="header__image" type="button">
+          Start Slideshow
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      </header>
+      <main className="main">
+        {data &&
+          data.map((painting) => {
+            return (
+              <div className="painting" key={key(painting)}>
+                <img
+                  className="painting__image"
+                  src={painting.images.hero.small}
+                  alt={`${painting.name} by ${painting.artist.name}`}
+                />
+                <div className="painting__text">
+                  <p className="painting__name">{painting.name}</p>
+                  <p className="painting__author">{painting.artist.name}</p>
+                </div>
+              </div>
+            );
+          })}
+      </main>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

@@ -1,0 +1,18 @@
+@use "../utils/" as u;
+
+.main {
+  padding: u.rem(24);
+  display: grid;
+  gap: u.rem(24);
+
+  .painting {
+    position: relative;
+
+    &__text {
+      position: absolute;
+      color: white;
+      bottom: 0;
+      padding: u.rem(32);
+    }
+  }
+}

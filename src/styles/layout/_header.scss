@@ -1,0 +1,9 @@
+@use "../utils/" as u;
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: u.rem(24);
+  border-block-end: 1px solid var(--light-grey);
+}
