@@ -1,4 +1,11 @@
-const Header = () => {
+import { SetStateAction } from "react";
+
+type HeaderProps = {
+  slideshowStarted: boolean;
+  setSlideshowStarted: React.Dispatch<SetStateAction<boolean>>;
+};
+
+const Header = ({ slideshowStarted, setSlideshowStarted }: HeaderProps) => {
   return (
     <header className="header">
       <h1>
@@ -8,8 +15,12 @@ const Header = () => {
           alt="galleria logo"
         />
       </h1>
-      <button className="header__button" type="button">
-        Start Slideshow
+      <button
+        onClick={() => setSlideshowStarted(!slideshowStarted)}
+        className="header__button"
+        type="button"
+      >
+        {slideshowStarted ? "Stop Slideshow" : "Start Slideshow"}
       </button>
     </header>
   );

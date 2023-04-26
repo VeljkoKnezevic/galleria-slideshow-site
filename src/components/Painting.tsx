@@ -6,9 +6,16 @@ import Slideshow from "./Slideshow";
 type PaintingProps = {
   data: DataTypes | undefined;
   setData: React.Dispatch<SetStateAction<DataTypes | undefined>>;
+  slideshowStarted: boolean;
+  setSlideshowStarted: React.Dispatch<SetStateAction<boolean>>;
 };
 
-const Painting = ({ data, setData }: PaintingProps) => {
+const Painting = ({
+  data,
+  setData,
+  slideshowStarted,
+  setSlideshowStarted,
+}: PaintingProps) => {
   const [slideshowPaintingName, setSLideshowPaintingName] = useState("");
 
   useEffect(() => {
@@ -25,17 +32,22 @@ const Painting = ({ data, setData }: PaintingProps) => {
     fetchData();
   }, []);
 
+  const handlePaintingClick = (paintingName: string) => {
+    setSLideshowPaintingName(paintingName);
+    setSlideshowStarted(true);
+  };
+
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
-      {!slideshowPaintingName && data
+      {!slideshowStarted && data
         ? data.map((painting) => {
             return (
               <div
                 role="button"
                 tabIndex={0}
-                onKeyDown={() => setSLideshowPaintingName(painting.name)}
-                onClick={() => setSLideshowPaintingName(painting.name)}
+                onKeyDown={() => handlePaintingClick(painting.name)}
+                onClick={() => handlePaintingClick(painting.name)}
                 className="painting"
                 key={key(painting)}
               >
@@ -53,7 +65,7 @@ const Painting = ({ data, setData }: PaintingProps) => {
               </div>
             );
           })
-        : slideshowPaintingName && (
+        : slideshowStarted && (
             <Slideshow
               data={data}
               slideshowPaintingName={slideshowPaintingName}

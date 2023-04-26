@@ -6,12 +6,21 @@ import Painting from "./components/Painting";
 
 const App = () => {
   const [data, setData] = useState<DataTypes>();
+  const [slideshowStarted, setSLideshowStarted] = useState(false);
 
   return (
     <>
-      <Header />
+      <Header
+        setSlideshowStarted={setSLideshowStarted}
+        slideshowStarted={slideshowStarted}
+      />
       <main className="main">
-        <Painting data={data} setData={setData} />
+        <Painting
+          slideshowStarted={slideshowStarted}
+          setSlideshowStarted={setSLideshowStarted}
+          data={data}
+          setData={setData}
+        />
       </main>
     </>
   );
