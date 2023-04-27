@@ -1,13 +1,13 @@
-import { useEffect, SetStateAction, useState } from "react";
+import { useEffect, SetStateAction } from "react";
 import key from "weak-key";
 import { DataTypes } from "../DataTypes";
-import Slideshow from "./Slideshow";
 
 type PaintingProps = {
   data: DataTypes | undefined;
   setData: React.Dispatch<SetStateAction<DataTypes | undefined>>;
   slideshowStarted: boolean;
   setSlideshowStarted: React.Dispatch<SetStateAction<boolean>>;
+  setSlideshowIndex: React.Dispatch<SetStateAction<number>>;
 };
 
 const Painting = ({
@@ -15,9 +15,8 @@ const Painting = ({
   setData,
   slideshowStarted,
   setSlideshowStarted,
+  setSlideshowIndex,
 }: PaintingProps) => {
-  const [slideshowPaintingName, setSLideshowPaintingName] = useState("");
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -32,8 +31,8 @@ const Painting = ({
     fetchData();
   }, []);
 
-  const handlePaintingClick = (paintingName: string) => {
-    setSLideshowPaintingName(paintingName);
+  const handlePaintingClick = (index: number) => {
+    setSlideshowIndex(index);
     setSlideshowStarted(true);
   };
 
@@ -41,19 +40,19 @@ const Painting = ({
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {!slideshowStarted && data
-        ? data.map((painting) => {
+        ? data.map((painting, index) => {
             return (
               <div
+                key={key(painting)}
                 role="button"
                 tabIndex={0}
-                onKeyDown={() => handlePaintingClick(painting.name)}
-                onClick={() => handlePaintingClick(painting.name)}
+                onKeyDown={() => handlePaintingClick(index)}
+                onClick={() => handlePaintingClick(index)}
                 className="painting"
-                key={key(painting)}
               >
                 <img
                   className="painting__image"
-                  src={painting.images.hero.small}
+                  src={painting.images.thumbnail}
                   alt={`${painting.name} by ${painting.artist.name}`}
                 />
                 <div className="painting__tint">
@@ -65,12 +64,7 @@ const Painting = ({
               </div>
             );
           })
-        : slideshowStarted && (
-            <Slideshow
-              data={data}
-              slideshowPaintingName={slideshowPaintingName}
-            />
-          )}
+        : ""}
     </>
   );
 };
