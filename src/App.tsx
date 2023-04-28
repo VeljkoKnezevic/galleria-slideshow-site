@@ -9,6 +9,7 @@ const App = () => {
   const [data, setData] = useState<DataTypes>();
   const [slideshowStarted, setSLideshowStarted] = useState(false);
   const [slideshowIndex, setSlideshowIndex] = useState(0);
+
   return (
     <>
       <Header

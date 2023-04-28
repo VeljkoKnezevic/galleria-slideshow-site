@@ -1,5 +1,5 @@
 import key from "weak-key";
-import { SetStateAction, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import { DataTypes } from "../DataTypes";
@@ -16,21 +16,24 @@ const Slideshow = ({
   setSlideshowIndex,
 }: SlideshowProps) => {
   const [open, setOpen] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const calcProgress = () => {
+      const trackWidth = (slideshowIndex + 1) * 6.67;
+
+      setProgress(trackWidth);
+    };
+
+    calcProgress();
+  }, [slideshowIndex]);
 
   const handleNextClick = () => {
-    if (slideshowIndex === 14) {
-      setSlideshowIndex(0);
-    } else {
-      setSlideshowIndex(slideshowIndex + 1);
-    }
+    setSlideshowIndex(slideshowIndex + 1);
   };
 
   const handlePrevClick = () => {
-    if (slideshowIndex === 0) {
-      setSlideshowIndex(14);
-    } else {
-      setSlideshowIndex(slideshowIndex - 1);
-    }
+    setSlideshowIndex(slideshowIndex - 1);
   };
 
   return (
@@ -71,7 +74,14 @@ const Slideshow = ({
                 <p className="slideshow__para">{painting.description}</p>
                 <a href={painting.source}>Go to source</a>
                 <div className="slider">
-                  <div className="slider__bar"></div>
+                  <div className="slider__bar">
+                    <div
+                      className="slider__track"
+                      style={{
+                        width: `${progress}%`,
+                      }}
+                    ></div>
+                  </div>
                   <div className="slider__name-and-artist">
                     <p className="slider__name">{painting.name}</p>
                     <p className="slider__artist">{painting.artist.name}</p>
@@ -82,6 +92,7 @@ const Slideshow = ({
                       type="button"
                       aria-label="previous painting"
                       onClick={handlePrevClick}
+                      disabled={slideshowIndex === 0}
                     >
                       <img src="/assets/shared/icon-back-button.svg" alt="" />
                     </button>
@@ -90,6 +101,7 @@ const Slideshow = ({
                       type="button"
                       aria-label="next painting"
                       onClick={handleNextClick}
+                      disabled={slideshowIndex === 14}
                     >
                       <img src="/assets/shared/icon-next-button.svg" alt="" />
                     </button>
