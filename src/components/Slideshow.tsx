@@ -37,7 +37,7 @@ const Slideshow = ({
   };
 
   return (
-    <div>
+    <>
       {data &&
         data.map((painting, index) => {
           const slides = [
@@ -48,31 +48,34 @@ const Slideshow = ({
           if (index === slideshowIndex) {
             return (
               <div className="slideshow" key={key(painting)}>
-                <img
-                  className="slideshow__painting"
-                  src={painting.images.thumbnail}
-                  alt={`${painting.name} by ${painting.artist}`}
-                />
-                <button
-                  onClick={() => setOpen(true)}
-                  className="slideshow__button"
-                  type="button"
-                >
-                  view image
-                </button>
-
-                <div className="slideshow__name-and-author">
-                  <h2 className="slideshow__name">{painting.name}</h2>
-                  <p className="slideshow__artist">{painting.artist.name}</p>
+                <div className="slideshow__wrapper">
+                  <img
+                    className="slideshow__painting"
+                    src={painting.images.hero.small}
+                    alt={`${painting.name} by ${painting.artist.name}`}
+                  />
+                  <button
+                    onClick={() => setOpen(true)}
+                    className="slideshow__button"
+                    type="button"
+                  >
+                    view image
+                  </button>
+                  <div className="slideshow__name-and-artist">
+                    <h2 className="slideshow__name">{painting.name}</h2>
+                    <p className="slideshow__artist">{painting.artist.name}</p>
+                  </div>
+                  <img
+                    className="slideshow__artist-photo"
+                    src={painting.artist.image}
+                    alt={painting.artist.name}
+                  />
+                  <p className="slideshow__age">{painting.year}</p>
+                  <p className="slideshow__para">{painting.description}</p>
+                  <a className="slideshow__source" href={painting.source}>
+                    Go to source
+                  </a>
                 </div>
-                <img
-                  className="slideshow__artist-photo"
-                  src={painting.artist.image}
-                  alt={painting.artist.name}
-                />
-                <p className="slideshow__age">{painting.year}</p>
-                <p className="slideshow__para">{painting.description}</p>
-                <a href={painting.source}>Go to source</a>
                 <div className="slider">
                   <div className="slider__bar">
                     <div
@@ -82,29 +85,27 @@ const Slideshow = ({
                       }}
                     ></div>
                   </div>
-                  <div className="slider__name-and-artist">
-                    <p className="slider__name">{painting.name}</p>
-                    <p className="slider__artist">{painting.artist.name}</p>
-                  </div>
-                  <div className="slider__buttons">
-                    <button
-                      className="slider__prev"
-                      type="button"
-                      aria-label="previous painting"
-                      onClick={handlePrevClick}
-                      disabled={slideshowIndex === 0}
-                    >
-                      <img src="/assets/shared/icon-back-button.svg" alt="" />
-                    </button>
-                    <button
-                      className="slider__next"
-                      type="button"
-                      aria-label="next painting"
-                      onClick={handleNextClick}
-                      disabled={slideshowIndex === 14}
-                    >
-                      <img src="/assets/shared/icon-next-button.svg" alt="" />
-                    </button>
+                  <div className="slider__content">
+                    <div className="slider__name-and-artist">
+                      <p className="slider__name">{painting.name}</p>
+                      <p className="slider__artist">{painting.artist.name}</p>
+                    </div>
+                    <div className="slider__buttons">
+                      <button
+                        className="slider__prev slider__button"
+                        type="button"
+                        aria-label="previous painting"
+                        onClick={handlePrevClick}
+                        disabled={slideshowIndex === 0}
+                      ></button>
+                      <button
+                        className="slider__next slider__button"
+                        type="button"
+                        aria-label="next painting"
+                        onClick={handleNextClick}
+                        disabled={slideshowIndex === 14}
+                      ></button>
+                    </div>
                   </div>
                 </div>
                 {/* Lightbox that renders on button click */}
@@ -116,6 +117,7 @@ const Slideshow = ({
                     render={{
                       buttonPrev: slides.length <= 1 ? () => null : undefined,
                       buttonNext: slides.length <= 1 ? () => null : undefined,
+                      iconClose: () => "close",
                     }}
                     slides={slides}
                   />
@@ -125,7 +127,7 @@ const Slideshow = ({
           }
           return "";
         })}
-    </div>
+    </>
   );
 };
 

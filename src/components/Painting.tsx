@@ -37,8 +37,7 @@ const Painting = ({
   };
 
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
-    <>
+    <div className="painting__container">
       {!slideshowStarted && data
         ? data.map((painting, index) => {
             return (
@@ -65,7 +64,7 @@ const Painting = ({
             );
           })
         : ""}
-    </>
+    </div>
   );
 };
 

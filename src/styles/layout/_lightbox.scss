@@ -1,0 +1,22 @@
+@use "../utils/" as u;
+
+.yarl {
+  &__container {
+    background-color: rgba(0, 0, 0, 0.9) !important;
+  }
+
+  &__toolbar {
+    margin-block-start: u.rem(200);
+    button {
+      font-family: "Libre Baskerville";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 17px;
+      text-align: right;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+  }
+}
