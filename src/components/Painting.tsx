@@ -37,7 +37,7 @@ const Painting = ({
   };
 
   return (
-    <div className="painting__container">
+    <div className="painting">
       {!slideshowStarted && data
         ? data.map((painting, index) => {
             return (
@@ -47,7 +47,7 @@ const Painting = ({
                 tabIndex={0}
                 onKeyDown={() => handlePaintingClick(index)}
                 onClick={() => handlePaintingClick(index)}
-                className="painting"
+                className="painting__container"
               >
                 <img
                   className="painting__image"
