@@ -87,6 +87,7 @@ const Slideshow = ({
                     src={painting.artist.image}
                     alt={painting.artist.name}
                   />
+
                   <p className="slideshow__age">{painting.year}</p>
                   <p className="slideshow__para">{painting.description}</p>
                   <a className="slideshow__source" href={painting.source}>

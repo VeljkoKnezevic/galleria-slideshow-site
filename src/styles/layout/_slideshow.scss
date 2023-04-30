@@ -44,6 +44,11 @@
     background-repeat: no-repeat;
     background-position: 10% 45%;
     margin: u.rem(16);
+
+    @include u.breakpoint(medium) {
+      position: relative;
+      bottom: calc(-504px + 16px);
+    }
   }
 
   &__name-and-artist {
@@ -51,6 +56,15 @@
     margin-block-start: u.rem(174);
     width: u.rem(280);
     padding: u.rem(24);
+
+    @include u.breakpoint(medium) {
+      margin-block-start: -71px;
+      margin-inline-start: auto;
+      width: u.rem(445);
+      padding: 0;
+      padding-block-end: u.rem(67);
+      padding-inline-start: u.rem(65);
+    }
   }
 
   &__name {
@@ -58,6 +72,12 @@
     font-size: u.rem(24);
     line-height: u.rem(29);
     color: var(--black);
+
+    @include u.breakpoint(medium) {
+      font-size: u.rem(56);
+      line-height: u.rem(64);
+      width: 90%;
+    }
   }
 
   &__artist {
@@ -66,13 +86,24 @@
     line-height: u.rem(19);
     color: var(--grey);
     margin-block-start: u.rem(8);
+
+    @include u.breakpoint(medium) {
+      margin-block-start: u.rem(24);
+    }
   }
 
   &__artist-photo {
     width: u.rem(64);
     height: u.rem(64);
-    // margin in figma - padding of main
+    // margin in figma - padding of slideshow
     margin-inline-start: u.rem(16);
+
+    @include u.breakpoint(medium) {
+      width: u.rem(128);
+      height: u.rem(128);
+      margin-inline-start: auto;
+      margin-inline-end: u.rem(55);
+    }
   }
 
   &__age {
@@ -82,6 +113,13 @@
     text-align: right;
     margin-block-start: u.rem(-20);
     color: var(--cream);
+
+    @include u.breakpoint(medium) {
+      text-align: start;
+      margin-block-start: u.rem(194);
+      font-size: u.rem(200);
+      line-height: u.rem(150);
+    }
   }
 
   &__para {
@@ -90,6 +128,10 @@
     line-height: u.rem(28);
     margin-block-start: u.rem(-26);
     color: var(--grey);
+    @include u.breakpoint(medium) {
+      width: u.rem(457);
+      margin-inline: auto;
+    }
   }
 
   &__source {
@@ -102,5 +144,10 @@
     text-transform: uppercase;
     color: var(--grey);
     margin-block-start: u.rem(40);
+
+    @include u.breakpoint(medium) {
+      // margin in figma - padding of slideshow
+      margin-inline-start: u.rem(115);
+    }
   }
 }
