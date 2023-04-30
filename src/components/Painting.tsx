@@ -1,5 +1,6 @@
 import { useEffect, SetStateAction } from "react";
 import key from "weak-key";
+import Masonry from "react-masonry-css";
 import { DataTypes } from "../DataTypes";
 
 type PaintingProps = {
@@ -36,8 +37,19 @@ const Painting = ({
     setSlideshowStarted(true);
   };
 
+  const breakpoints = {
+    default: 4,
+    1100: 3,
+    900: 2,
+    700: 1,
+  };
+
   return (
-    <div className="painting">
+    <Masonry
+      breakpointCols={breakpoints}
+      className="painting"
+      columnClassName="my-masonry-grid_column"
+    >
       {!slideshowStarted && data
         ? data.map((painting, index) => {
             return (
@@ -64,7 +76,7 @@ const Painting = ({
             );
           })
         : ""}
-    </div>
+    </Masonry>
   );
 };
 

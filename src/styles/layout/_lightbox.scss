@@ -5,6 +5,10 @@
     background-color: rgba(0, 0, 0, 0.9) !important;
   }
 
+  &__slide__current {
+    padding: u.rem(50) !important;
+  }
+
   &__toolbar {
     margin-block-start: u.rem(200);
     button {

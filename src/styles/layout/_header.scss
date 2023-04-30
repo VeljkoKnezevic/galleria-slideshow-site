@@ -7,6 +7,10 @@
   padding: u.rem(24);
   border-block-end: 1px solid var(--light-grey);
 
+  @include u.breakpoint(medium) {
+    padding: u.rem(29) u.rem(40) u.rem(27);
+  }
+
   h1 {
     width: u.rem(113);
     height: u.rem(32);
@@ -27,5 +31,12 @@
     text-transform: uppercase;
     background-color: transparent;
     border: none;
+    padding: 0;
+
+    @include u.breakpoint(medium) {
+      font-size: u.rem(12);
+      line-height: u.rem(15);
+      letter-spacing: u.rem(2.57143);
+    }
   }
 }

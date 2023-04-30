@@ -17,6 +17,7 @@ const Slideshow = ({
 }: SlideshowProps) => {
   const [open, setOpen] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [width, setWidth] = useState<number>(window.innerWidth);
 
   useEffect(() => {
     const calcProgress = () => {
@@ -36,6 +37,18 @@ const Slideshow = ({
     setSlideshowIndex(slideshowIndex - 1);
   };
 
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
+  const isMobile = width <= 768;
+
   return (
     <>
       {data &&
@@ -51,7 +64,11 @@ const Slideshow = ({
                 <div className="slideshow__wrapper">
                   <img
                     className="slideshow__painting"
-                    src={painting.images.hero.small}
+                    src={
+                      isMobile
+                        ? painting.images.hero.small
+                        : painting.images.hero.large
+                    }
                     alt={`${painting.name} by ${painting.artist.name}`}
                   />
                   <button
