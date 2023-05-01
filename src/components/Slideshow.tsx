@@ -62,37 +62,43 @@ const Slideshow = ({
             return (
               <div className="slideshow" key={key(painting)}>
                 <div className="slideshow__wrapper">
-                  <img
-                    className="slideshow__painting"
-                    src={
-                      isMobile
-                        ? painting.images.hero.small
-                        : painting.images.hero.large
-                    }
-                    alt={`${painting.name} by ${painting.artist.name}`}
-                  />
-                  <button
-                    onClick={() => setOpen(true)}
-                    className="slideshow__button"
-                    type="button"
-                  >
-                    view image
-                  </button>
-                  <div className="slideshow__name-and-artist">
-                    <h2 className="slideshow__name">{painting.name}</h2>
-                    <p className="slideshow__artist">{painting.artist.name}</p>
+                  <div className="slideshow__flex">
+                    <img
+                      className="slideshow__painting"
+                      src={
+                        isMobile
+                          ? painting.images.hero.small
+                          : painting.images.hero.large
+                      }
+                      alt={`${painting.name} by ${painting.artist.name}`}
+                    />
+                    <button
+                      onClick={() => setOpen(true)}
+                      className="slideshow__button"
+                      type="button"
+                    >
+                      view image
+                    </button>
+                    <div className="slideshow__name-and-artist">
+                      <h2 className="slideshow__name">{painting.name}</h2>
+                      <p className="slideshow__artist">
+                        {painting.artist.name}
+                      </p>
+                    </div>
+                    <img
+                      className="slideshow__artist-photo"
+                      src={painting.artist.image}
+                      alt={painting.artist.name}
+                    />
                   </div>
-                  <img
-                    className="slideshow__artist-photo"
-                    src={painting.artist.image}
-                    alt={painting.artist.name}
-                  />
 
-                  <p className="slideshow__age">{painting.year}</p>
-                  <p className="slideshow__para">{painting.description}</p>
-                  <a className="slideshow__source" href={painting.source}>
-                    Go to source
-                  </a>
+                  <div className="slideshow__flex">
+                    <p className="slideshow__age">{painting.year}</p>
+                    <p className="slideshow__para">{painting.description}</p>
+                    <a className="slideshow__source" href={painting.source}>
+                      Go to source
+                    </a>
+                  </div>
                 </div>
                 <div className="slider">
                   <div className="slider__bar">

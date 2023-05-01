@@ -2,11 +2,8 @@
 
 .slider {
   width: 100%;
-  padding-block-start: 30%;
-
-  @include u.breakpoint(medium) {
-    padding-block-start: 10%;
-  }
+  position: absolute;
+  bottom: 0;
 
   &__bar {
     width: 100%;

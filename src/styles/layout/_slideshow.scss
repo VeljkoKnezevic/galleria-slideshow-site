@@ -7,11 +7,20 @@
     padding-block-start: u.rem(40);
   }
 
+  @include u.breakpoint(xlarge) {
+    padding-block-start: u.rem(100);
+  }
+
   &__wrapper {
     margin-inline: u.rem(24);
 
     @include u.breakpoint(medium) {
       margin-inline: u.rem(40);
+    }
+
+    @include u.breakpoint(xlarge) {
+      display: flex;
+      justify-content: space-between;
     }
   }
 
@@ -65,6 +74,10 @@
       padding-block-end: u.rem(67);
       padding-inline-start: u.rem(65);
     }
+
+    @include u.breakpoint(xlarge) {
+      margin-inline-start: u.rem(410);
+    }
   }
 
   &__name {
@@ -104,6 +117,10 @@
       margin-inline-start: auto;
       margin-inline-end: u.rem(55);
     }
+    @include u.breakpoint(xlarge) {
+      margin-block-start: u.rem(258);
+      margin-inline-start: u.rem(505);
+    }
   }
 
   &__age {
@@ -120,6 +137,10 @@
       font-size: u.rem(200);
       line-height: u.rem(150);
     }
+
+    @include u.breakpoint(xlarge) {
+      margin-block-start: 0;
+    }
   }
 
   &__para {
@@ -131,6 +152,13 @@
     @include u.breakpoint(medium) {
       width: u.rem(457);
       margin-inline: auto;
+    }
+
+    @include u.breakpoint(xlarge) {
+      margin: 0;
+      text-align: start;
+      width: u.rem(350);
+      margin-block-start: u.rem(-35);
     }
   }
 
@@ -148,6 +176,11 @@
     @include u.breakpoint(medium) {
       // margin in figma - padding of slideshow
       margin-inline-start: u.rem(115);
+    }
+    @include u.breakpoint(xlarge) {
+      text-align: start;
+      margin: 0;
+      margin-block-start: u.rem(81);
     }
   }
 }

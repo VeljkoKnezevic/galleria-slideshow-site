@@ -11,6 +11,11 @@
 
   &__toolbar {
     margin-block-start: u.rem(200);
+
+    @include u.breakpoint(xlarge) {
+      margin-block-start: u.rem(60);
+      margin-inline-end: u.rem(250);
+    }
     button {
       font-family: "Libre Baskerville";
       font-style: normal;
