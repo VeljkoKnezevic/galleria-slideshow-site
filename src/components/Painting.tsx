@@ -22,7 +22,7 @@ const Painting = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("./data.json");
+        const response = await fetch("/data.json");
         const json = await response.json();
         setData(json);
       } catch (err) {
