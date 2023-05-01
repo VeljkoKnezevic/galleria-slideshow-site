@@ -5,10 +5,14 @@
 
   @include u.breakpoint(medium) {
     padding-block-start: u.rem(40);
+    padding-block-end: u.rem(53);
   }
 
   @include u.breakpoint(xlarge) {
     padding-block-start: u.rem(100);
+    max-width: u.rem(1360);
+    margin-inline: auto;
+    padding-block-end: u.rem(75);
   }
 
   &__wrapper {
@@ -53,6 +57,11 @@
     background-repeat: no-repeat;
     background-position: 10% 45%;
     margin: u.rem(16);
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(255, 255, 255, 0.25);
+    }
 
     @include u.breakpoint(medium) {
       position: relative;
@@ -172,6 +181,11 @@
     text-transform: uppercase;
     color: var(--grey);
     margin-block-start: u.rem(40);
+
+    &:hover {
+      cursor: pointer;
+      color: var(--black);
+    }
 
     @include u.breakpoint(medium) {
       // margin in figma - padding of slideshow

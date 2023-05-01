@@ -11,6 +11,11 @@
     padding: u.rem(29) u.rem(40) u.rem(27);
   }
 
+  @include u.breakpoint(xlarge) {
+    max-width: u.rem(1440);
+    margin-inline: auto;
+  }
+
   h1 {
     width: u.rem(113);
     height: u.rem(32);
@@ -32,6 +37,11 @@
     background-color: transparent;
     border: none;
     padding: 0;
+
+    &:hover {
+      cursor: pointer;
+      color: var(--black);
+    }
 
     @include u.breakpoint(medium) {
       font-size: u.rem(12);
